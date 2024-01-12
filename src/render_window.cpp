@@ -26,28 +26,28 @@ RenderWindow::RenderWindow()
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         FATAL("SDL_Init Error: " + std::string(SDL_GetError()));
-        exit(3);
+        // exit(3);
     }
     if (!IMG_Init(IMG_INIT_PNG))
     {
         FATAL("IMG_Init Error: " + std::string(IMG_GetError()));
-        SDL_Quit();
-        exit(3);
+        // SDL_Quit();
+        // exit(3);
     }
     if (TTF_Init() < 0)
     {
         FATAL("TTF_Init Error: " + std::string(TTF_GetError()));
-        IMG_Quit();
-        SDL_Quit();
-        exit(3);
+        // IMG_Quit();
+        // SDL_Quit();
+        // exit(3);
     }
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
     {
         FATAL("Mix_OpenAudio Error: " + std::string(Mix_GetError()));
-        TTF_Quit();
-        IMG_Quit();
-        SDL_Quit();
-        exit(3);
+        // TTF_Quit();
+        // IMG_Quit();
+        // SDL_Quit();
+        // exit(3);
     }
 
     this->m_window = SDL_CreateWindow(
@@ -59,8 +59,8 @@ RenderWindow::RenderWindow()
     if (!m_window)
     {
         FATAL("SDL_CreateWindow Error: " + std::string(SDL_GetError()));
-        SDL_Quit();
-        exit(3);
+        // SDL_Quit();
+        // exit(3);
     }
 
     m_renderer = SDL_CreateRenderer(
@@ -69,9 +69,9 @@ RenderWindow::RenderWindow()
     if (!m_renderer)
     {
         FATAL("SDL_CreateRenderer Error: " + std::string(SDL_GetError()));
-        SDL_DestroyWindow(m_window);
-        SDL_Quit();
-        exit(3);
+        // SDL_DestroyWindow(m_window);
+        // SDL_Quit();
+        // exit(3);
     }
 
     if (scale > 1)
@@ -83,9 +83,17 @@ RenderWindow::RenderWindow()
 
 RenderWindow::~RenderWindow()
 {
-    SDL_DestroyRenderer(m_renderer);
-    SDL_DestroyWindow(m_window);
+    if (m_renderer)
+    {
+        SDL_DestroyRenderer(m_renderer);
+    }
+    if (m_window)
+    {
+        SDL_DestroyWindow(m_window);
+    }
+    
     Mix_CloseAudio();
+    Mix_Quit();
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();

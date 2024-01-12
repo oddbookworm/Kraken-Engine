@@ -20,10 +20,10 @@ class RenderWindowTest : public ::testing::Test
     {
         // Have to set this before first test
         RenderWindow::setScale(2);
-        TRACE("This and the next message should go to file");
-        TRACE("Setting scale to " + std::to_string(RenderWindow::getScale()));
+        // TRACE("This and the next message should go to file");
+        // TRACE("Setting scale to " + std::to_string(RenderWindow::getScale()));
         kn::ErrorLogger::setConsoleOnly();
-        DEBUG("This DEBUG message appears in console");
+        // DEBUG("This DEBUG message appears in console");
     }
 
     virtual ~RenderWindowTest() {}
