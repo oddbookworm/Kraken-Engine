@@ -60,3 +60,27 @@ jobs:
 
     - name: Run Tests
       run: cd bin && ./Kraken_Test
+
+    - name: Zip bin
+      if: always()
+      run: tar.exe -a -c -f bin.zip bin
+
+    - name: Zip bld
+      if: always()
+      run: tar.exe -a -c -f bld.zip bld
+
+    - name: Upload Artifact bin
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: bin
+        path: bin.zip
+        retention-days: 5
+
+    - name: Upload Artifact bld
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: bld
+        path: bld.zip
+        retention-days: 5
