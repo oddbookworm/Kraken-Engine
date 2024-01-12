@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  windows-gtest-make:
+  windows-gtest-ninja:
     runs-on: ${{ matrix.os }}
 
     strategy:
