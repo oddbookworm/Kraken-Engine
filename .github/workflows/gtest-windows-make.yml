@@ -23,7 +23,7 @@ jobs:
       matrix:
         os: [windows-latest]
         # build_type: [Release]
-        c_compiler: [cl]
+        c_compiler: [cl.exe]
         include:
           - os: windows-latest
             c_compiler: cl
