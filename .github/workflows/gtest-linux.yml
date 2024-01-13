@@ -67,7 +67,7 @@ jobs:
 
     - name: Zip bld
       if: always()
-      run: zip -r bld.zip -x bld/_deps bld/*
+      run: zip -r bld.zip bld -x bld/_deps/\* bld/CMakeFiles/\*
 
     - name: Upload Artifact bin
       if: always()
