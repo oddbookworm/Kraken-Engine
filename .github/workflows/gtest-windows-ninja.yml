@@ -78,6 +78,6 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ steps.strings.outputs.build-output-dir }}
+        name: bld
         path: ${{ steps.strings.outputs.build-output-dir }}.zip
-        retention-days: 5
+        retention-days: 5s

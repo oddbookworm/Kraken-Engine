@@ -63,11 +63,11 @@ jobs:
 
     - name: Zip bin
       if: always()
-      run: zip bin.zip
+      run: zip bin.zip bin/*
 
     - name: Zip bld
       if: always()
-      run: zip -r bld.zip -x bld/_deps bld
+      run: zip -r bld.zip -x bld/_deps bld/*
 
     - name: Upload Artifact bin
       if: always()
