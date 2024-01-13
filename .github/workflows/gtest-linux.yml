@@ -46,7 +46,7 @@ jobs:
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: mkdir bld && cd bld && cmake .. -DLOG_LEVEL=1 -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+      run: mkdir bld && mkdir bin && cd bld && cmake .. -DLOG_LEVEL=1 -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         # cmake -B ${{ steps.strings.outputs.build-output-dir }}
         # -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         # -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
@@ -63,11 +63,11 @@ jobs:
 
     - name: Zip bin
       if: always()
-      run: tar.exe -a -c -f bin.zip bin
+      run: zip bin.zip
 
     - name: Zip bld
       if: always()
-      run: tar.exe -a -c -f bld.zip bld
+      run: zip -r bld.zip -x bld/_deps bld
 
     - name: Upload Artifact bin
       if: always()
