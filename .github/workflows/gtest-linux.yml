@@ -73,7 +73,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: bin-{{ matrix.c_compiler }}
+        name: bin-${{ matrix.c_compiler }}
         path: bin.zip
         retention-days: 5
 
@@ -81,6 +81,6 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: bld-{{ matrix.c_compiler }}
+        name: bld-${{ matrix.c_compiler }}
         path: bld.zip
         retention-days: 5
