@@ -99,7 +99,7 @@ TEST_F(MathTest, GetLength)
 {
     Vec2 first = Vec2();
     Vec2 second = Vec2(3.0, 4.0);
-    Vec2 third = Vec2(INFINITY, INFINITY);
+    Vec2 third = Vec2(std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity());
     Vec2 fourth = Vec2(4.0, 3.0);
 
     EXPECT_EQ(first.getLength(), 0.0);
@@ -112,10 +112,10 @@ TEST_F(MathTest, Normalize)
 {
     Vec2 first = Vec2();
     Vec2 second = Vec2(3.0, 4.0);
-    Vec2 third = Vec2(INFINITY, INFINITY);
+    Vec2 third = Vec2(std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity());
 
     EXPECT_EQ(first.normalize(), false);
-    EXPECT_EQ(first, Vec2::ZERO());
+    EXPECT_EQ(first, Vec2());
     EXPECT_EQ(second.normalize(), true);
     EXPECT_EQ(second, Vec2(0.6, 0.8));
     EXPECT_EQ(third.normalize(), false);

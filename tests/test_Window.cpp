@@ -12,16 +12,17 @@ namespace
 class WindowTest : public ::testing::Test
 {
   protected:
-    WindowTest() : m_size(320, 240), m_scale(2) { kn::ErrorLogger::setConsoleOnly(); }
+    WindowTest() : m_size(320, 240), m_scale(2), m_title("Kraken Window") { kn::ErrorLogger::setConsoleOnly(); }
 
     virtual ~WindowTest() {}
 
-    virtual void SetUp() { kn::window::init(m_size, m_scale); }
+    virtual void SetUp() { kn::window::init(m_size, m_title, m_scale); }
 
     virtual void TearDown() { kn::window::quit(); }
 
     kn::math::Vec2 m_size;
     int m_scale;
+    std::string m_title;
 };
 
 TEST_F(WindowTest, WindowInit)
